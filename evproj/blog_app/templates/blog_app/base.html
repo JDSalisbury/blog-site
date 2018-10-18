@@ -24,28 +24,38 @@
           <li><a class="navbar-list" href="https://github.com/JDSalisbury/blog-site"></a>GITHUB</li>
         </ul>
       </div>
-    </nav>
 
-    <ul class="nav navbar-nav navbar-right">
-      {% if user.is_authenticated %}
-      <li>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li>
           <a href="{% url 'post_new'%}">NEW POST</a>
-      </li>
-      <li>
+        </li>
+        <li>
           <a href="{% url 'post_draft_list'%}">NEW POST</a>
-      </li>
-      <li>
+        </li>
+        <li>
           <a href="{% url 'logout'%}">NEW POST</a>
-      </li>
-      <li>
+        </li>
+        <li>
           <h3>Welcome: {{user.username}}</h3>
-      </li>
-      {% else %}
-      <li>
+        </li>
+        {% else %}
+        <li>
           <a href="{% url 'login'%}"><span class="glyphicon glyphicon-user"></span></a>
-      </li>
-      {%endif%}
-    </ul>
+        </li>
+        {%endif%}
+      </ul>
+    </nav>
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {%block content%}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
 
   </body>
   <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
