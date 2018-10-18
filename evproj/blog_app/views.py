@@ -18,19 +18,19 @@ class PostListView(ListView):
     def get_queryset(self):
         return BlogPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
-class PostDetailView(DetialView):
+class PostDetailView(DetailView):
     model = BlogPost
 
 class CreatePostView(LoginRequiredMixin,CreateView):
     login_url = '/login/'
     redirect_field_name = 'blog_app/post_detail.html'
-    form_class = Postform
+    form_class = PostForm
     model = BlogPost
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     redirect_field_name = 'blog_app/post_detail.html'
-    form_class = Postform
+    form_class = PostForm
     model = BlogPost
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
@@ -58,7 +58,7 @@ def post_publish(request, pk):
 @login_required
 def add_comment_to_post(request,pk):
     post = get_object_or_404(BlogPost,pk=pk)
-    if request.method == "POST"
+    if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
