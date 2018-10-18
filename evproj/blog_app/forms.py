@@ -7,6 +7,8 @@ class PostForm(forms.ModelForm):
         model = BlogPost
         fields = ('author', 'title', 'text')
 
+
+# css classes add to widgets
         widgets = {
             'title':forms.TextInput(attrs={'class':'textinputclass'}),
             'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
