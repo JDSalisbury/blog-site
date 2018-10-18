@@ -20,7 +20,7 @@ class BlogPost(models.Model):
         return self.coments.filter(approved_comment=True)
 
     def get_absolute_url(self):
-        return reverse("post_detail".kwargs={'pk':self.pk})
+        return reverse("post_detail",kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.title
@@ -36,6 +36,9 @@ class Comment(model.Model):
     def approve(self):
         self.approved_comment = True
         self.save()
+
+    def get_absolute_url(self):
+        return reverse('post_list')
 
     def __str__(self):
         return self.text
